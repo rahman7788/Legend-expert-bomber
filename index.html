@@ -1,0 +1,87 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Server Status</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: #0f172a; /* deep navy */
+      --bg2: #0f0f1a; /* almost black */
+      --accent-a: #7c3aed; /* violet */
+      --accent-b: #06b6d4; /* teal */
+      --glass: rgba(255,255,255,0.06);
+      --muted: rgba(255,255,255,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+    body{
+      background: linear-gradient(180deg,var(--bg1) 0%, var(--bg2) 100%);
+      display:flex;align-items:center;justify-content:center;padding:32px;color:#fff;
+    }.card{
+  width:100%;max-width:780px;padding:48px;border-radius:20px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.04);
+  position:relative;overflow:hidden;
+}
+
+/* decorative gradient blobs */
+.card::before, .card::after{
+  content:"";position:absolute;z-index:0;border-radius:50%;filter:blur(60px);opacity:0.9;transform:translate3d(0,0,0);
+}
+.card::before{width:360px;height:360px;right:-80px;top:-80px;background:linear-gradient(45deg,var(--accent-a),transparent 60%)}
+.card::after{width:260px;height:260px;left:-60px;bottom:-60px;background:linear-gradient(45deg,var(--accent-b),transparent 60%)}
+
+.content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center}
+
+h1{
+  margin:0;font-size:clamp(28px,6vw,64px);line-height:1.02;font-weight:800;letter-spacing:-0.02em;
+  text-transform:lowercase;
+  background:linear-gradient(90deg, var(--accent-a), var(--accent-b));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+p.lead{
+  margin:18px 0 28px;color:var(--muted);font-size:clamp(14px,2.4vw,18px);font-weight:500;
+}
+
+.status-pill{
+  display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;font-weight:600;
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.04);
+  color: #fff;font-size:14px;backdrop-filter:blur(4px)
+}
+
+.unavailable{display:block;margin-top:14px;color:#ffefef;background:linear-gradient(90deg, rgba(255,20,60,0.06), transparent);padding:10px 18px;border-radius:12px;border:1px solid rgba(255,20,60,0.12);font-weight:600}
+
+.meta{margin-top:22px;color:var(--muted);font-size:13px}
+
+/* subtle pulse */
+.pulse{position:absolute;right:28px;top:28px;width:12px;height:12px;background:linear-gradient(90deg,var(--accent-b),var(--accent-a));border-radius:50%;box-shadow:0 0 18px rgba(124,58,237,0.9);animation:pulse 2.4s linear infinite}
+@keyframes pulse{0%{transform:scale(0.8);opacity:0.9}50%{transform:scale(1.5);opacity:0.35}100%{transform:scale(0.8);opacity:0.9}}
+
+/* responsive spacing */
+@media (min-width:900px){.card{padding:64px;border-radius:28px}}
+
+  </style>
+</head>
+<body>
+  <div class="card" role="main" aria-labelledby="title">
+    <div class="pulse" aria-hidden="true"></div>
+    <div class="content">
+      <h1 id="title">server crash good by</h1>
+      <p class="lead">We're currently experiencing an unexpected issue.</p><span class="status-pill">Status: <strong style="margin-left:8px">Offline</strong></span>
+
+  <span class="unavailable">unavailable</span>
+
+  <div class="meta">We're working on it — please check back later.</div>
+</div>
+
+  </div>
+</body>
+</html>
